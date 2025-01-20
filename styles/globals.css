@@ -124,7 +124,7 @@ table {
 }
 /* //ELEMENT */
 body {
-  background-color: rgb(48, 48, 48) !important;
+  background-color: rgb(75, 75, 75) !important;
 }
 
 .main-body {
@@ -133,7 +133,7 @@ body {
   justify-content: center;
 }
 .todo-app {
-  width: 60%;
+  width: 70%;
   height: 100vh;
   border-radius: 15px;
   margin: 80px 0px;
@@ -168,7 +168,7 @@ body {
   margin-left: 10px;
   padding: 16px 23px;
   border: none;
-  background-color: rgb(33, 33, 33);
+  background-color: rgba(89, 113, 120, 0.68);
   color: #ffffff;
   font-size: 16px;
   border-radius: 5px;
@@ -186,7 +186,7 @@ body {
   color: #ddd;
 }
 .add {
-  margin-right: 10px;
+  margin-right: 50px;
 }
 .todos {
   width: 100%;
@@ -209,10 +209,10 @@ body {
   display: flex;
   align-items: center;
   padding: 7px 30px;
-  background-color: rgb(38 37 37);
+  background-color: rgb(69, 68, 68);
   border-radius: 80px;
   margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(12, 255, 251, 0.2);
 }
 .todo-list li span {
   margin-left: 10px;

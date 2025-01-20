@@ -4,6 +4,9 @@ use serde::{Serialize, Deserialize};
 use uuid::Uuid;
 use std::sync::Mutex;
 use chrono::{DateTime, Utc};
+use mongodb::{Client, options::ClientOptions, bson::doc};
+use dotenv::dotenv;
+use std::env;
 
 #[derive(Serialize, Deserialize, Clone)]
 struct TodoItem {
@@ -85,8 +88,23 @@ async fn delete_todo(
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
+    dotenv().ok();
+    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let client_options = ClientOptions::parse(&database_url).await.unwrap();
+    let client = Client::with_options(client_options).unwrap();
+    let database = client.database("todo_app");
+    let _collection = database.collection::<TodoItem>("todos");
+
+    match client.list_database_names(None, None).await {
+        Ok(_) => println!("Database connected"),
+        Err(e) => {
+            eprintln!("Failed to connect to the database: {}", e);
+            std::process::exit(1);
+        }
+    }
+
     let app_state = web::Data::new(AppState {
-        todo_list: Mutex::new(Vec::new()),
+        todo_list: Mutex::new(Vec::new()), 
     });
 
     let port = 8080;
